@@ -26,6 +26,16 @@ module.exports={
                     {loader: "style-loader"},
                     {loader: "css-loader"}
                 ]
+            },
+            // 图片 loader
+            {
+                test: /\.(png|jpg|gif|jpeg)/, //匹配图片文件后缀名
+                use:[{
+                    loader: "url-loader",  // 指定使用的loader和loader的配置参数
+                    options: {
+                        limit: 500 // 把小于500B的文件打成base64的格式，写入js
+                    }
+                }]
             }
         ]
     },

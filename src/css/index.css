@@ -2,3 +2,9 @@ body{
     background-color: aqua;
     color: olivedrab;
 }
+
+.img{
+    background-image: url(../images/photo.jpg);
+    width: 1500px;
+    height: 1000px;
+}
