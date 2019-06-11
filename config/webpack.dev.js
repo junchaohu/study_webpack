@@ -1,4 +1,5 @@
-const path = require("path")
+const path = require("path");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 module.exports={
     mode: "development",
     // 入口文件的配置项
@@ -15,9 +16,31 @@ module.exports={
         filename:'[name].js'
     },
     // 模块：例如解读CSS，图片如何转换，压缩
-    module:{},
+    module:{
+        rules: [
+            // css loader
+            {
+                test: /\.css$/,
+                use:[
+                    {loader: "style-loader"},
+                    {loader: "css-loader"}
+                ]
+            }
+        ]
+    },
     // 插件：用于生产模板和各项功能
-    plugins:[],
+    plugins:[
+        new UglifyJsPlugin({
+            test: /\.js(\?.*)?$/i,
+          })
+    ],
+    // optimization: {
+    //     minimizer: [
+    //         new UglifyJsPlugin({
+    //             test: /\.js(\?.*)?$/i,
+    //           })
+    //     ],
+    // },
     // 配置webpack开发服务功能
     devServer:{
         // 设置基本目录结构
